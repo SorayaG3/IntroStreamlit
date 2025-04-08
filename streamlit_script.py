@@ -6,16 +6,16 @@ import plotly.graph_objects as go
 # ======= Header toevoegen ========
 st.title("Dashboard Schoenverkoop")
 
-# ======= Dummy dataset maken ========
+# ======= Dataset inladen ========
 df = pd.read_csv("exclusieve_schoenen_verkoop_met_locatie.csv")
 
 # ======= Filters ========
 st.sidebar.header("Filters")
-selected_year = st.sidebar.selectbox("Selecteer aankoopdatum", sorted(df['Jaar'].unique()))
-selected_land = st.sidebar.selectbox("Selecteer land", sorted(df['Land'].unique()))
+selected_year = st.sidebar.selectbox("Selecteer Aankoopjaar", sorted(df['Aankoopdatum'].unique()))
+selected_land = st.sidebar.selectbox("Selecteer Land", sorted(df['land'].unique()))
 
 # Filter toepassen
-filtered_df = df[(df['Jaar'] == selected_year) & (df['Land'] == selected_land)]
+filtered_df = df[(df['Aankoopdatum'] == selected_year) & (df['land'] == selected_land)]
 
 # ======= Tabs ========
 tab1, tab2 = st.tabs(["Aantal per Merk", "Aantal per Maand + Targetlijn"])
