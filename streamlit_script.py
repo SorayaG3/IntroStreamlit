@@ -18,15 +18,15 @@ selected_land = st.sidebar.selectbox("Selecteer Land", sorted(df['land'].unique(
 filtered_df = df[(df['aankoopdatum'] == selected_year) & (df['land'] == selected_land)]
 
 # ======= Tabs ========
-tab1, tab2 = st.tabs(["aantal per Merk", "aantal per Maand + Targetlijn"])
+tab1, tab2 = st.tabs(["aantal per merk", "aantal per Maand + Targetlijn"])
 
 with tab1:
-    st.subheader("Totaal aantal per Merk")
-    grouped_merk = filtered_df.groupby('Merk', as_index=False)['aantal'].sum()
+    st.subheader("Totaal aantal per merk")
+    grouped_merk = filtered_df.groupby('merk', as_index=False)['aantal'].sum()
     
-    fig_merk = px.bar(grouped_merk, x='Merk', y='aantal', color='Merk',
-                      title='aantal per Merk',
-                      labels={'aantal': 'aantal', 'Merk': 'Merk'})
+    fig_merk = px.bar(grouped_merk, x='merk', y='aantal', color='merk',
+                      title='aantal per merk',
+                      labels={'aantal': 'aantal', 'merk': 'merk'})
     
     st.plotly_chart(fig_merk, use_container_width=True)
 
