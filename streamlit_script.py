@@ -9,6 +9,9 @@ st.title("Dashboard Schoenverkoop")
 # ======= Dataset inladen ========
 df = pd.read_csv("exclusieve_schoenen_verkoop_met_locatie.csv")
 
+# Nieuwe kolom Maand afleiden uit Aankoopdatum
+df['Maand'] = df['aankoopdatum'].dt.strftime('%b')
+
 # ======= Filters ========
 st.sidebar.header("Filters")
 selected_year = st.sidebar.selectbox("Selecteer Aankoopjaar", sorted(df['aankoopdatum'].unique()))
