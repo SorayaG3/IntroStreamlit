@@ -11,11 +11,11 @@ df = pd.read_csv("exclusieve_schoenen_verkoop_met_locatie.csv")
 
 # ======= Filters ========
 st.sidebar.header("Filters")
-selected_year = st.sidebar.selectbox("Selecteer Aankoopjaar", sorted(df['Aankoopdatum'].unique()))
+selected_year = st.sidebar.selectbox("Selecteer Aankoopjaar", sorted(df['aankoopdatum'].unique()))
 selected_land = st.sidebar.selectbox("Selecteer Land", sorted(df['land'].unique()))
 
 # Filter toepassen
-filtered_df = df[(df['Aankoopdatum'] == selected_year) & (df['land'] == selected_land)]
+filtered_df = df[(df['aankoopdatum'] == selected_year) & (df['land'] == selected_land)]
 
 # ======= Tabs ========
 tab1, tab2 = st.tabs(["Aantal per Merk", "Aantal per Maand + Targetlijn"])
