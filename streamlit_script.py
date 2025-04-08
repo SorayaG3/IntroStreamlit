@@ -9,4 +9,4 @@ st.title("Dashboard Schoenverkoop")
 # ======= Dataset inladen ========
 df = pd.read_csv("exclusieve_schoenen_verkoop_met_locatie.csv")
 
-st.write(df)
+st.write("DOE HET GEWOON")
