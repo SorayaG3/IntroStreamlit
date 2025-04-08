@@ -18,32 +18,32 @@ selected_land = st.sidebar.selectbox("Selecteer Land", sorted(df['land'].unique(
 filtered_df = df[(df['aankoopdatum'] == selected_year) & (df['land'] == selected_land)]
 
 # ======= Tabs ========
-tab1, tab2 = st.tabs(["Aantal per Merk", "Aantal per Maand + Targetlijn"])
+tab1, tab2 = st.tabs(["aantal per Merk", "aantal per Maand + Targetlijn"])
 
 with tab1:
     st.subheader("Totaal aantal per Merk")
-    grouped_merk = filtered_df.groupby('Merk', as_index=False)['Aantal'].sum()
+    grouped_merk = filtered_df.groupby('Merk', as_index=False)['aantal'].sum()
     
-    fig_merk = px.bar(grouped_merk, x='Merk', y='Aantal', color='Merk',
-                      title='Aantal per Merk',
-                      labels={'Aantal': 'Aantal', 'Merk': 'Merk'})
+    fig_merk = px.bar(grouped_merk, x='Merk', y='aantal', color='Merk',
+                      title='aantal per Merk',
+                      labels={'aantal': 'aantal', 'Merk': 'Merk'})
     
     st.plotly_chart(fig_merk, use_container_width=True)
 
 with tab2:
-    st.subheader("Aantal per Maand met Targetlijn")
-    grouped_maand = filtered_df.groupby('Maand', as_index=False)['Aantal'].sum()
+    st.subheader("aantal per Maand met Targetlijn")
+    grouped_maand = filtered_df.groupby('Maand', as_index=False)['aantal'].sum()
     
     # Kleurcodering per regel
-    grouped_maand['Kleur'] = grouped_maand['Aantal'].apply(lambda x: 'red' if x < 20 else 'green')
+    grouped_maand['Kleur'] = grouped_maand['aantal'].apply(lambda x: 'red' if x < 20 else 'green')
     
     fig_maand = go.Figure()
     fig_maand.add_trace(go.Bar(
-        x=grouped_maand['Aantal'],
+        x=grouped_maand['aantal'],
         y=grouped_maand['Maand'],
         orientation='h',
         marker_color=grouped_maand['Kleur'],
-        name='Aantal'
+        name='aantal'
     ))
     
     # Targetlijn toevoegen
@@ -56,8 +56,8 @@ with tab2:
     )
 
     fig_maand.update_layout(
-        title='Aantal per Maand met Targetlijn (20)',
-        xaxis_title='Aantal',
+        title='aantal per Maand met Targetlijn (20)',
+        xaxis_title='aantal',
         yaxis_title='Maand',
         showlegend=False
     )
