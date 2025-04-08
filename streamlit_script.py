@@ -9,6 +9,8 @@ st.title("Dashboard Schoenverkoop")
 # ======= Dataset inladen ========
 df = pd.read_csv("exclusieve_schoenen_verkoop_met_locatie.csv")
 
+df['aankoopdatum'] = pd.to_datetime(df['aankoopdatum'], format='%m/%d/%Y')
+
 # Nieuwe kolom Maand afleiden uit Aankoopdatum
 df['Maand'] = df['aankoopdatum'].dt.strftime('%b')
 
